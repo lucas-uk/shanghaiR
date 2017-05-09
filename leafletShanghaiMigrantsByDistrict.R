@@ -67,7 +67,7 @@ paletteColourFunction2 <- colorBin("Reds", domain = myVariableToMap2, bins = pal
 ################### Map display labels ###############################
 
 layerTitle = "Number of migrants"
-layerTitle2 = "Number of migrants by area"
+layerTitle2 = "Number of migrants by area (sq.km)"
 
 labels <- sprintf(
   "%s</strong><br/>%g migrants",
