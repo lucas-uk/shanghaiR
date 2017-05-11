@@ -47,6 +47,7 @@ chinaSPDF <- merge(chinaSPDF,migData, by="ID_1")
 myVariableToMap = chinaSPDF@data$Total
 
 chinaSPDF$migsNormalisedByArea = chinaSPDF@data$Total/chinaSPDF$areas
+
 myVariableToMap2 = chinaSPDF$migsNormalisedByArea
 
 
@@ -72,7 +73,7 @@ paletteColourFunction2 <- colorBin("Greens", domain = myVariableToMap2, bins = p
 
 
 labels <- sprintf(
-  "%s</strong><br/>%g migrants",
+  "%s</strong><br/>%i migrants",
   chinaSPDF$NAME_1, chinaSPDF$Total
 ) %>% lapply(htmltools::HTML)
 
