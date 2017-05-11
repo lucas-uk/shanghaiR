@@ -28,7 +28,7 @@ chinaSPDF = SpatialPolygonsDataFrame(simplifiedPolygons, data=china@data) #Need 
 
 simplifiedPolygons = spTransform(simplifiedPolygons, CRS("+proj=aea +lat_1=27 +lat_2=45 +lat_0=35 +lon_0=105 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=mm +no_defs"))
 proj4string(simplifiedPolygons)
-chinaSPDF$areas = gArea(simplifiedPolygons,byid = TRUE) /1000000000000 #sq.mm tosqkm
+chinaSPDF$areas = gArea(simplifiedPolygons,byid = TRUE) /1000000000000 #sq.mm to sqkm
 sum(chinaSPDF$areas) #9382125.552585
 
 #Create a map object with some background OpenStreetMap
@@ -83,9 +83,8 @@ labels2 <- sprintf(
 ) %>% lapply(htmltools::HTML)
 
 
-
-layerTitle = "Number migrated to Shanghai"
-layerTitle2 = "Number of migrants to Shanghai by area (sq.km)"
+layerTitle = "Number migrated to Shanghai<br>(Jenks breaks classification)"
+layerTitle2 = "# of migrants to Shanghai by area (sq.km)<br>(Jenks breaks classification)"
 #Add the polygons to the map object
 myMap %>%
   addProviderTiles("OpenStreetMap.BlackAndWhite") %>%
@@ -153,7 +152,7 @@ myMap %>%
       direction = "auto")) %>%  
   
   addLegend("bottomright", pal = paletteColourFunction2, values = ~myVariableToMap2,
-            title = layerTitle,
+            title = layerTitle2,
             labFormat = labelFormat(prefix = ""),
             opacity = 1
   )
